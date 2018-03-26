@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Flickr Photo Search</title>
+  
+  <link type="text/css" href="css/normalize.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=News+Cycle|Pacifico" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+
+  <!--[if lt IE 10]>
+    <style type="text/css">
+      label {
+          top:0px;
+          color:#5264AE;
+          font-size:19px;
+      }
+
+    </style>
+  <![endif]-->
+  
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="js/polyfill.min.js"></script>  
+  <script src="js/main.js"></script>
+</head>
+
+
+<body>
+  <main>
+    <div class="container">
+
+      <section class="formwrap">
+        <h1>Flickr Photo Search</h1>
+
+        <form>
+
+          <div class="form__group">      
+            <input type="search" name="search" id="searchInput" class="form__search" required>
+            <label for="search">Type a search term.</label>
+            <input type="submit" value="Search" id="submitBtn" class="form__submit">
+          </div><!--/.form-group -->
+
+        </form>
+      </section>
+     
+
+      <section id="photosContainer" class="photos"></section>
+
+    </div><!--/.container -->
+  </main>
+
+
+</body>
+</html>
