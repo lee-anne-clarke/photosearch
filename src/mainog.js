@@ -1,12 +1,9 @@
-//This is the pre-compiled JS file used for Flikr photo search: http://lee-anne-clarke.com/work/photosearch/
-
-
 import $ from 'jquery'
 
 $(function() {
 
-  $('form').submit(function(evt) {
-    evt.preventDefault();
+  $('form').submit(function(event) {
+    event.preventDefault();
     
     let $searchField = $('#searchInput');
     let $searchTerm = $searchField.val();
@@ -25,12 +22,12 @@ $(function() {
     
     //callback
     let displayPhotos = response => {
-      let photoHTML = '<ul>';
+      let photoHTML = '<ul class="photos-list">';
 
       for (let photo of response.items) {
-        photoHTML += '<li>'; 
-        photoHTML += `<a class="image" target="_blank" href="${photo.link}">`;
-        photoHTML += `<img src="${photo.media.m}"></a></li>`;
+        photoHTML += '<li class="photos-list-item">'; 
+        photoHTML += `<a class="photo-link" target="_blank" href="${photo.link}">`;
+        photoHTML += `<img class="photo" src="${photo.media.m}"></a></li>`;
       }
       
       photoHTML += '</ul>';
@@ -39,35 +36,28 @@ $(function() {
       
       //Display a message if there are no search results
       if ( !$('#photosContainer ul').html().length ) {
-        $('#photosContainer').html(`<div class="searchResultMsg">Sorry, no photos were found matching the search term "${$searchTerm}".</div>`);
+        $('#photosContainer').html(`<p class="form-msg">Sorry, no photos were found matching the search term "${$searchTerm}".</p>`);
 
         //Re-enable the Search button
         $submitBtn.attr('disabled',false).val('Search');        
       }
 
-      //Display a message if the search input is empty
-      if ( $searchTerm.length === 0 ) {
-        $('#photosContainer').html('<div class="searchResultMsg">Please enter a search term.</div>');
-      }
-
       //Success message
       if ( $searchTerm.length && $('#photosContainer ul').html().length ) {
-        $('#photosContainer ul').before(`<div class="searchResultMsg">Results matching the term "${$searchTerm}".</div>`);
+        $('#photosContainer ul').before(`<p class="form-msg">Results matching the term "${$searchTerm}":</p>`);
       }
       
       //Re-enable the Search button
       $submitBtn.attr('disabled',false).val('Search');
     };
     
-    
     $.getJSON(flickrAPI, flikrOptions, displayPhotos);
 
-    //Clear the form field
+    //Clear the search input field
     $searchField.val('');
 
-    //Blur the input field
+    //Blur the search input field
     $searchField.blur();
 
   }); //end submit
-
 }); //end ready

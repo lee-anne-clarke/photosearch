@@ -1,42 +1,9 @@
-//SASS file used for Flikr photo search page: http: //lee-anne-clarke.com/work/photosearch/
-
-
-//---------------------------------------------------
-  //Variables and Mixins
-//---------------------------------------------------
+/*---------------------------------------------------
+  Variables and Mixins
+---------------------------------------------------*/
 
 @mixin box-shadow($shadows...) {
-  -moz-box-shadow: $shadows;
-  -webkit-box-shadow: $shadows;
   box-shadow: $shadows;
-}
-
-@mixin border-radius($radius) {
-	-webkit-border-radius: $radius;
-	-moz-border-radius: $radius;
-	-ms-border-radius: $radius;
-	border-radius: $radius;
-}
-
-@mixin transition($transitions...) {
-	-webkit-transition: $transitions;
-	-moz-transition: $transitions;
-	-o-transition: $transitions;
-	transition: $transitions;
-}
-
-@mixin transform($a, $b) {
-	-webkit-transform: translate($a, $b);
-	-moz-transform: translate($a, $b);
-	-o-transform: translate($a, $b);
-	transform: translate($a, $b);
-}
-
-@mixin bg-image($a, $b, $c) {
-	background-image: -o-linear-gradient($a, $b, $c);
-	background-image: -moz-linear-gradient($a, $b, $c);
-	background-image: -webkit-linear-gradient($a, $b, $c);
-	background-image: -ms-linear-gradient($a, $b, $c);
 }
 
 
@@ -45,7 +12,9 @@
   Global values
 ---------------------------------------------------*/
 
-* { box-sizing: border-box; }
+* { 
+	box-sizing: border-box; 
+}
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -73,30 +42,32 @@ body {
   font-family: 'News Cycle', sans-serif;
   font-size: 30px;
   line-height: 1;
-  padding-top: 25px;
-  padding-bottom: 30px;
 }
 
-main {
+.main {
   max-width: 1080px;
   position: relative;
-  margin: 0 auto;
+  margin: 25px auto 30px;
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
+    visibility: hidden;
     content: ".";
     display: block;
-    overflow: hidden;
-    visibility: hidden;
-    font-size: 0;
-    line-height: 0;
     width: 0;
     height: 0;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
   }
 
-  &:after {
+  &::after {
     clear: both;
   }
+
+	@media (min-width: 680px) {
+		padding-top: 35px; 
+	}
 }
 
 .container {
@@ -105,25 +76,16 @@ main {
   padding: 30px 15px;
   overflow: hidden;
   @include box-shadow(0 1px 0 0 rgba(0, 0, 0, 0.1));
-}
 
-.formwrap {
-  margin-bottom: 20px;
-}
-
-a img {
-  border: none;
-}
-
-@media (min-width: 680px) {
-  body { padding-top: 35px; }
-  .container { @include border-radius(5px); }
+	@media (min-width: 680px) {
+		border-radius: 5px; 
+	}
 }
 
 
 
 /*---------------------------------------------------
-  Fonts
+  Typography
 ---------------------------------------------------*/
 
 h1 {
@@ -133,19 +95,11 @@ h1 {
   line-height: 1.2;
   text-transform: uppercase;;
   margin-bottom: 40px;
-}
 
-a {
-  color: #3f8abf;
-  line-height: 1.4;
-  text-decoration: none;
-}
-
-@media (min-width: 680px) {
-  h1 {
-    font-size: 45px;
-    margin-bottom: 25px;
-  }
+	@media (min-width: 680px) {
+	  font-size: 45px;
+	  margin-bottom: 25px;
+	}
 }
 
 
@@ -153,15 +107,17 @@ a {
 /*---------------------------------------------------
   Search form
 ---------------------------------------------------*/
-.form__group {
+
+.form-wrap {
+  margin-bottom: 20px;
+}
+
+.form-group {
 	position: relative;
 	width: 100%;
 }
 
-
-
-/* INPUT ======================================= */
-.form__search {
+.form-input {
 	display: block;
 	width: 90%;
 	font-family: 'News Cycle', sans-serif;
@@ -176,113 +132,104 @@ a {
 	background-clip: padding-box; //removes shadow in iOS
 }
 
-
-/* LABEL ======================================= */
-label {
+.form-label {
   position: absolute;
   left: 5px;
   top: 4px;
-
   color: #999; 
   font-size: 25px;
   line-height: 1.4;
   pointer-events: none;
-
-  @include transition(0.2s ease all);
+  transition: 0.2s ease all;
 }
 
-
 /* active state */
-.form__search:focus ~ label, 
-.form__search:valid ~ label {
+.form-input:focus ~ .form-label, 
+.form-input:valid ~ .form-label {
   top: -24px;
   color: #5264AE;
   font-size: 16px;
 }
 
+.btn-submit {
+  display: block;
+  background-color: #ec528d;
+  color: white;
+  font-family: 'Pacifico', serif;
+  font-size: 30px;
+  text-shadow: 0 -1px 1px #af315f;
+  line-height: 1;
+  padding: 20px 30px;
+  margin: 20px auto;
+  border: none;
+  cursor: pointer;
 
-
-/* SUBMIT BUTTON ======================================= */
-.form__submit {
-    background: none;
-    border: none;
-    display: block;
-    background-color: #ec528d;
-    font-family: 'Pacifico', serif;
-    font-size: 30px;
-    color: white;
-    line-height: 1;
-    padding: 20px 30px;
-    margin: 20px auto;
-    text-shadow: 0 -1px 1px #af315f;
-    cursor: pointer;
-
-    background-color: #b688bb;
-    @include bg-image(bottom, #FFC5E3 5%, #724F96 100%);
+  //background: none;
+  background-color: #b688bb;
 	background-image: linear-gradient(to bottom, #FFC5E3 5%, #724F96 100%);
-
 	@include box-shadow(0 8px 0 #62467f, 0 15px 5px rgba(0, 0, 0, .35));
+  border-radius: 8px;
+  transition: 
+  	box-shadow .1s ease-in-out,
+  	background-color 0.2s ease-in-out, 
+  	transform 0.1s ease-in-out;
 
-    @include border-radius(8px);
+	&:hover {
+	  background-color: #ec6a9c;
+	  text-shadow: 0 -1px 1px rgba(175, 49, 95, .9), 0 0 5px rgba(255, 255, 255, 0.8);
+	}
 
-    -webkit-transition: -webkit-box-shadow .1s ease-in-out;
-    -moz-transition: -moz-box-shadow .1s ease-in-out;
-    -o-transition: -o-box-shadow .1s ease-in-out;
-    transition: box-shadow .1s ease-in-out;
-    
-    -webkit-transition: background-color .2s ease-in-out, -webkit-transform .1s ease-in-out;
-    -moz-transition: background-color .2s ease-in-out, -moz-transform .1s ease-in-out;
-    -o-transition: background-color .2s ease-in-out, -o-transform .1s ease-in-out;
-    transition: background-color .2s ease-in-out, transform .1s ease-in-out;
+	&:disabled,
+	&:active {
+	  @include box-shadow(0 5px 0 #62467f, 0 10px 5px rgba(0, 0, 0, 0.35));
+	  transform: translate(0, 2px);
+	}
+
+	&:disabled {
+		background-image: linear-gradient(to bottom, #CCCCCC 0%, #724F96 100%);
+	}
+
+} /* END .btn-submit */
 
 
-  &:hover {
-      background-color: #ec6a9c;
-      text-shadow: 0 -1px 1px rgba(175, 49, 95, .9), 0 0 5px rgba(255, 255, 255, .8);
-  }
-
-  &:disabled,
-  &:active {
-      @include box-shadow(0 5px 0 #62467f, 0 10px 5px rgba(0, 0, 0, .35));
-      @include transform(0, 2px);
-  }
-
-  &:disabled {
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #CCCCCC),color-stop(1, #724F96));
-	@include bg-image(bottom, #CCCCCC 0%, #724F96 100%);
-	background-image: linear-gradient(to bottom, #CCCCCC 0%, #724F96 100%);
-  }
-
-} /* END .form__submit */
+.form-msg {
+  background-color: #fbfbfc;
+  font-size: 22px;
+  line-height: 1.4;
+  padding: 20px 30px;
+  margin-top: 30px;
+  border: 1px solid #e2e5e8;
+  border-radius: 5px;
+}
 
 
 @media (min-width: 680px) {
-  .form__search {
+  .form-input {
     width: 350px;
   }
 
-  .form__search, 
-  .form__submit {
+  .form-input, 
+  .btn-submit {
     display: inline-block;
   }
 
-  .form__search {
+  .form-input {
     font-size: 30px;
   }
 
-  .form__submit {
+  .btn-submit {
     font-size: 40px;
     margin: 20px 0 20px 10px;
   }
 
-  label {
+  .form-label {
     top: 45px;
     font-size: 30px;
   }
 
   /* active state */
-  .form__search:focus ~ label, 
-  .form__search:valid ~ label {
+  .form-input:focus ~ .form-label, 
+  .form-input:valid ~ .form-label {
     top: 0;
     font-size: 20px;
   }
@@ -294,71 +241,56 @@ label {
   Photos
 ---------------------------------------------------*/
 
-.photos {
-  ul { 
-    list-style: none; 
+.photos-list { 
+  list-style: none; 
+}
+
+.photos-list-item {
+  position: relative;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 25px;
+  vertical-align: middle;
+  
+  &::before {
+  	display: none;
   }
 
-  li {
-    position: relative;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-top: 25px;
-    vertical-align: middle;
-    &:before {display: none;}
-  }
+	@media (min-width: 680px) {
+	  float: left;
+	  width: 50%;
+	}
 
-  .image {
-    display: block;
-    height: 260px;
-	background-color: #edeff0;
-    text-align: center;
-    @include border-radius(5px);
-    @include transition(0.3s);
+	@media (min-width: 1080px) {
+		width: 25%; 
+	}
+}
 
-    &:hover { background-color: #dfe3e4; }
-
-    &:before {
-      content: "";
-      display: inline-block;
-      height: 100%;
-      vertical-align: middle;
-    }
-  } /* END .image */
-
-  img {
-    max-width: 80%;
-    max-height: 200px;
-    vertical-align: middle;
-	@include box-shadow(0 0 4px 0 rgba(0, 0, 0, 0.2));
-  }
-
-} /* END #photos */
-
-
-.searchResultMsg {
+.photo-link {
   display: block;
-  background-color: #fbfbfc;
-  font-size: 22px;
-  line-height: 1.2;
-  padding: 20px 30px;
-  margin-top: 30px;
-  border: 1px solid #e2e5e8;
-  @include border-radius(5px);
-}
+  height: 260px;
+	background-color: #edeff0;
+  text-align: center;
+	border-radius: 5px;
+  transition: 0.3s;
 
+  &:hover { 
+  	background-color: #dfe3e4; 
+  }
 
-@media (min-width: 680px) {
-  .photos li {
-    float: left;
-    width: 50%;
+  &::before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
   }
 }
 
-
-@media (min-width: 1080px) {
-  .photos li { width: 25%; }
+.photo {
+  max-width: 80%;
+  max-height: 200px;
+  vertical-align: middle;
+  border: none;
+	@include box-shadow(0 0 4px 0 rgba(0, 0, 0, 0.2));
 }
-
-
 

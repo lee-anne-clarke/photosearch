@@ -35,24 +35,21 @@
 
 
 <body>
-  <main>
+  <main class="main">
     <div class="container">
 
-      <section class="formwrap">
+      <section class="form-wrap">
         <h1>Flickr Photo Search</h1>
 
         <form>
-
-          <div class="form__group">      
-            <input type="search" name="search" id="searchInput" class="form__search" required>
-            <label for="search">Type a search term.</label>
-            <input type="submit" value="Search" id="submitBtn" class="form__submit">
+          <div class="form-group">      
+            <input class="form-input" type="search" name="search" id="searchInput" required>
+            <label class="form-label" for="search">Type a search term.</label>
+            <input class="btn-submit" type="submit" value="Search" id="submitBtn">
           </div><!--/.form-group -->
-
         </form>
       </section>
      
-
       <section id="photosContainer" class="photos"></section>
 
     </div><!--/.container -->
