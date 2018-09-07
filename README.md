@@ -1,3 +1,1 @@
-# photosearch
-
-Files for my Flickr photo search project.
+# Flickr photo search project
